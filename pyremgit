@@ -31,6 +31,18 @@ if sys.argv.__len__()>=2:
 		else:
 			print 'missing argument : server'
 			p.help__()
+	elif sys.argv[1]=='pull':
+		if sys.argv.__len__()>=3:
+			p.pull(sys.argv[2])
+		else:
+			print 'missing argument : remote:branch or configured pull key'
+			p.help__()
+	elif sys.argv[1]=='push':
+		if sys.argv.__len__()>=3:
+			p.push(sys.argv[2])
+		else:
+			print 'missing argument : remote:branch or configured pull key'
+			p.help__()
 	else:
 		print 'unknown command'
 		p.help__()

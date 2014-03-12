@@ -27,6 +27,34 @@ class pyremgit():
 		ssh=self.connect(server)
 		out=remote.cmd(ssh, commands)
 
+	def pull(self, what):
+		if type(what) is list:
+			for w in what:
+				p=w.split(':')
+				git.pull(p[0], p[1], self.stdout)
+		elif ':' in what:
+			p=what.split(':')
+			git.pull(p[0], p[1], self.stdout)
+		elif what in self.config['git']['pull']:
+			for key, val in self.config['git']['pull']:
+				git.pull(key, val, self.stdout)
+		else:
+			print 'we do not know what you are trying to do here...'
+
+	def push(self, what):
+		if type(what) is list:
+			for w in what:
+				p=w.split(':')
+				git.push(p[0], p[1], self.stdout)
+		elif ':' in what:
+			p=what.split(':')
+			git.push(p[0], p[1], self.stdout)
+		elif what in self.config['git']['pull']:
+			for key, val in self.config['git']['pull']:
+				git.push(key, val, self.stdout)
+		else:
+			print 'we do not know what you are trying to do here...'
+
 
 
 
