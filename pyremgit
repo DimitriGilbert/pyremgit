@@ -43,6 +43,16 @@ if sys.argv.__len__()>=2:
 		else:
 			print 'missing argument : remote:branch or configured pull key'
 			p.help__()
+	elif sys.argv[1]=='commit':
+		if sys.argv.__len__()>=3:
+			if sys.argv.__len__()>=4:
+				mess = sys.argv[3]
+			else:
+				mess = ''
+			p.commit(sys.argv[2], mess)
+		else:
+			print 'missing argument : commit flag'
+			p.help__()
 	else:
 		print 'unknown command'
 		p.help__()

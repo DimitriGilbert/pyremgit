@@ -55,6 +55,9 @@ class pyremgit():
 		else:
 			print 'we do not know what you are trying to do here...'
 
+	def commit(self, flag, message=''):
+		git.commit(flag, message, self.stdout)
+
 
 
 
@@ -65,3 +68,6 @@ class pyremgit():
 		print 'available command :'
 		print '	connect <server>'
 		print '	cmd <server> <"command1" "command2" ...> or cmd <server> <file1 file2 ...>'
+		print '	pull <remote:branch> or configured pull key'
+		print '	push <remote:branch> or configured push key'
+		print '	commit <flag> <"message">'
