@@ -1,12 +1,39 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import git, remote, sys, json, subprocess, os
+from pyremgit import pyremgit
+import sys, os
 
-class pyremgit():
-	"""python remote admin and git automation tool"""
-	def __init__(self):
-		self.stdout='/tmp/pyremgit'
-		self.bin_dir=os.path.dirname(os.path.realpath(__file__))
-		self.cwd=os.getcwd()
-		self.config=json.load(open(self.bin_dir+'/config.json'))
+p = pyremgit()
+if sys.argv.__len__()>=2:
+	if sys.argv[1]=='connect':
+		if sys.argv.__len__()>=3:
+			p.connect(sys.argv[2])
+		else:
+			print 'missing argument : server'
+			p.help__()
+	elif sys.argv[1]=='cmd':
+		if sys.argv.__len__()>=3:
+			if sys.argv.__len__()>=4:
+				x = 3
+				cmd = []
+				while x <= (sys.argv.__len__()-1):
+					if os.path.isfile(sys.argv[x]):
+						for f in open(sys.argv[x]):
+							cmd.append(f)
+					else:
+						cmd.append(sys.argv[x])
+					x = x+1
+				p.cmd(sys.argv[2], cmd)
+			else:
+				print 'missing argument : commands'
+				p.help__()
+		else:
+			print 'missing argument : server'
+			p.help__()
+	else:
+		print 'unknown command'
+		p.help__()
+
+else:
+	p.help__()
