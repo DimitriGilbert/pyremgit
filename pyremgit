@@ -1,0 +1,12 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import git, remote, sys, json, subprocess, os
+
+class pyremgit():
+	"""python remote admin and git automation tool"""
+	def __init__(self):
+		self.stdout='/tmp/pyremgit'
+		self.bin_dir=os.path.dirname(os.path.realpath(__file__))
+		self.cwd=os.getcwd()
+		self.config=json.load(open(self.bin_dir+'/config.json'))
