@@ -53,6 +53,14 @@ if sys.argv.__len__()>=2:
 		else:
 			print 'missing argument : commit flag'
 			p.help__()
+	elif sys.argv[1]=='pullsh':
+		if sys.argv.__len__()>=3:
+			p.commit(sys.argv[2], '')
+			p.pull(sys.argv[3])
+			p.push(sys.argv[3])
+		else:
+			print 'missing argument : commit flag'
+			p.help__()
 	else:
 		print 'unknown command'
 		p.help__()
