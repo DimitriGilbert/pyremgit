@@ -57,7 +57,7 @@ class pyremogit():
 			p=what.split(':')
 			git.pull(p[0], p[1], self.stdout)
 		elif what in self.config['git']['pull']:
-			for key, val in self.config['git']['pull'][what]:
+			for key, val in self.config['git']['pull'][what].iteritems():
 				git.pull(key, val, self.stdout)
 		else:
 			print 'we do not know what you are trying to do here...'
@@ -71,7 +71,7 @@ class pyremogit():
 			p=what.split(':')
 			git.push(p[0], p[1], self.stdout)
 		elif what in self.config['git']['push']:
-			for key, val in self.config['git']['push'][what]:
+			for key, val in self.config['git']['push'][what].iteritems():
 				git.push(key, val, self.stdout)
 		else:
 			print 'we do not know what you are trying to do here...'
