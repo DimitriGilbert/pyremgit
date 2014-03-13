@@ -29,8 +29,6 @@ def commit(flag, mess, out, verbose=1):
 	flag = '-'+flag+'m'
 	if mess == '':
 		mess = raw_input('commit message :')
-
-	# print 'git commit '+flag+' '+mess
 	ret = open(out, 'wt')
 	subprocess.call('git commit '+flag+' "'+mess+'"', shell=True, stdout=ret)
 	ret.close()

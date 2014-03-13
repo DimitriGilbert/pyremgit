@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import paramiko, select
+import paramiko, select, os, interactive_shell
 
 def connect(server, verbose=1):
 	ssh = paramiko.SSHClient()
@@ -76,3 +76,46 @@ def cmd(ssh, commands, verbose = 2):
 	else:
 		print 'ssh connexion is down !'
 		return False
+
+def put(ssh, files, verbose=1):
+	if type(files) is not dict :
+		tmp_files = {}
+		for f in files:
+			tmp_files[f] = f
+
+	sftp = paramiko.SFTPClient.from_transport(ssh)
+
+	for lf, rf in files:
+		try:
+			if verbose > 0:
+				print 'putting '+lf+' in '+rf
+			if os.path.isfile(lf):
+				sftp.put(lf, rf)
+			else:
+				print lf+' is not a file...'
+		except Exception, e:
+			print 'cannot put '+lf+' in '+rf
+			raise e
+			return False
+	ssh.close()
+	return True
+
+def get(ssh, files, verbose=1):
+	if type(files) is not dict :
+		tmp_files = {}
+		for f in files:
+			tmp_files[f] = f
+
+	sftp = paramiko.SFTPClient.from_transport(ssh)
+
+	for rf, lf in files:
+		try:
+			if verbose > 0:
+				print 'getting '+lf+' in '+rf
+			sftp.get(lf, rf)
+		except Exception, e:
+			print 'cannot get '+lf+' in '+rf
+			raise e
+			return False
+	ssh.close()
+	return True

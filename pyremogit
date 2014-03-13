@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from pyremgit import pyremgit
+from pyremogit import pyremogit
 import sys, os
 
-p = pyremgit()
+p = pyremogit()
 if sys.argv.__len__()>=2:
 	if sys.argv[1]=='connect':
 		if sys.argv.__len__()>=3:
@@ -23,13 +23,39 @@ if sys.argv.__len__()>=2:
 							cmd.append(f)
 					else:
 						cmd.append(sys.argv[x])
-					x = x+1
+					x += 1
 				p.cmd(sys.argv[2], cmd)
 			else:
 				print 'missing argument : commands'
 				p.help__()
 		else:
 			print 'missing argument : server'
+			p.help__()
+	elif sys.argv[1] == 'shell':
+		p.shell(sys.argv[2])
+	elif sys.argv[1]=='put':
+		if sys.argv.__len__()>=3:
+			x = 3
+			files = {}
+			while x <= (sys.argv.__len__()-1):
+				f = sys.argv[x].split('=>')
+				files[f[0]] = f[1]
+				x += 1
+			p.put(sys.argv[2], files)
+		else:
+			print 'missing argument : "/path/to/local/file=>/path/to/remote/file"'
+			p.help__()
+	elif sys.argv[1]=='get':
+		if sys.argv.__len__()>=3:
+			x = 3
+			files = {}
+			while x <= (sys.argv.__len__()-1):
+				f = sys.argv[x].split('=>')
+				files[f[0]] = f[1]
+				x += 1
+			p.get(sys.argv[2], files)
+		else:
+			print 'missing argument : "/path/to/remote/file=>/path/to/local/file"'
 			p.help__()
 	elif sys.argv[1]=='pull':
 		if sys.argv.__len__()>=3:
@@ -59,7 +85,7 @@ if sys.argv.__len__()>=2:
 			p.pull(sys.argv[3])
 			p.push(sys.argv[3])
 		else:
-			print 'missing argument : commit flag'
+			print 'missing argument : configured pull/push key'
 			p.help__()
 	else:
 		print 'unknown command'

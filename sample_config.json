@@ -1,0 +1,34 @@
+{
+	"servers":{
+		"my_server":{
+			"name":"my_server",
+			"host":"host",
+			"user":"user",
+			"password":"password"
+		}
+	},
+	"git":{
+		"pull":{
+			"my_project":{
+				"remote1":"branch1",
+				"remote2":"branch2"
+			},
+			"my_project_deployed":{
+				"remote1":"branch1"
+			}
+		},
+		"push":{
+			"my_project":{
+				"remote1":"branch1",
+				"remote2":"branch2"
+			}
+		},
+		"deploy":{
+			"my_deploy":{
+				"server":"my_server",
+				"directory":"/path/to/server/deployement",
+				"pull":"my_project_deployed"
+			}
+		}
+	}
+}
