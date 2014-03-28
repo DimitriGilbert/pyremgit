@@ -7,6 +7,9 @@
 			"password":"password"
 		}
 	},
+	"server_keys":{
+		"my_key":"path_to_my_key"
+	},
 	"git":{
 		"pull":{
 			"my_project":{
