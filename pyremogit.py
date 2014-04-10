@@ -4,7 +4,16 @@
 import remote, git, json, subprocess, os, sys, interactive_shell
 
 class pyremogit():
-	"""python remote admin and git automation tool"""
+	"""python remote admin and git automation tool
+	Usage: 
+		pyremogit connect <server>
+		pyremogit cmd <server> <command | file> <command | file>
+		pyremogit put <server> </path/to/local/file=>/path/to/remote/file> </path/to/local/file=>/path/to/remote/file>
+		pyremogit get <server> </path/to/remote/file=>/path/to/local/file> </path/to/remote/file=>/path/to/local/file>
+		pyremogit pull <remote:branch | key>
+		pyremogit push <remote:branch | key>
+		pyremogit commit <flag> <message>
+	"""
 	def __init__(self, config = ''):
 		self.stdout='/tmp/pyremgit'
 		self.bin_dir=os.path.dirname(os.path.realpath(__file__))
@@ -80,17 +89,8 @@ class pyremogit():
 		git.commit(flag, message, self.stdout)
 
 
-
-
+	def doc__(self):
+		return self.__doc__
 
 	def help__(self):
-		print 'usage :'
-		print '	pyremogit <command> [args]'
-		print 'available command :'
-		print '	connect <server>'
-		print '	cmd <server> <"command1" "command2" ...> or cmd <server> <file1 file2 ...>'
-		print '	put <server> <"/path/to/local/file=>/path/to/remote/file" ...>'
-		print '	get <server> <"/path/to/remote/file=>/path/to/local/file" ...>'
-		print '	pull <remote:branch> or configured pull key'
-		print '	push <remote:branch> or configured push key'
-		print '	commit <flag> <"message">'
+		print self.__doc__
