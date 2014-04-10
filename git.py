@@ -38,7 +38,9 @@ def commit(flag, mess, out = '/tmp/pyremogit_stdout', verbose=1):
 		mess = raw_input('commit message :')
 	ret = open(out, 'wt')
 	subprocess.call('git commit '+flag+' "'+mess+'"', shell=True, stdout=ret, stderr=subprocess.STDOUT)
-	ret.close()	
+	ret.close()
+	if verbose > 0:
+		print open(out, 'r+').read()
 	return True
 
 def mergetool(tool, out = '/tmp/pyremogit_stdout'):

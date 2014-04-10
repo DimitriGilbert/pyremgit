@@ -10,8 +10,8 @@ class pyremogit():
 		self.bin_dir=os.path.dirname(os.path.realpath(__file__))
 		self.cwd=os.getcwd()
 		if config == '':
-			if os.path.isfile(self.cwd+'/pyremgit.json'):
-				self.config=json.load(open(self.cwd+'/pyremgit.json'))
+			if os.path.isfile(self.cwd+'/pyremogit.json'):
+				self.config=json.load(open(self.cwd+'/pyremogit.json'))
 			else:
 				self.config=json.load(open(self.bin_dir+'/config.json'))
 		else:
